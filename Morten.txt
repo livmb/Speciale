@@ -1,0 +1,51 @@
+Hej
+
+
+heh
+
+Ok, så sum(thres.im) summerer over dit billede. Dvs den tager hver værdi i hver pixel, og lægger dem sammen.
+Derudover så har vi jo at det kun er hvide og sorte pixels. Dvs de er enten 0 eller 1.
+thres.im[300,300] = 1, viser at pixelen ved koordinaterne 300,300 er 1 og jeg kan se på billedet at den er hvid, så derfor er 1 = hvid, og 0 = sort.
+Så når vi summerer værdierne for alle pixels, så tæller vi faktisk de hvide pixels.
+Altså sum(thres.im) = antal hvide pixels.
+
+Derefter vil vi så gerne finde antallet af sorte pixels. Det gør vi ved at summere på følgende måde:
+sum(thres.im < 1).
+Det vi egentligt gør, er at vi først spørger hvilke pixels der har en værdi mindre end 1. Så for de sorte pixels, vil det være TRUE = 1, og for de hvide pixels vil det være FALSE = 0.
+Når vi tager summen af de værdier, får vi altså antallet af pixels, hvor værdien er mindre end 1. Så altså antallet af sorte pixels.
+
+sum(thres.im < 1) = antal sorte pixels.
+
+Sidst, så kan du være ret ligeglad med hvor mange kvadratcentimeter ting fylder. Det han beder dig om at finde, er hvor stor en del af billedet der er sort. Det han formulerer er
+
+sorte cm^2 / alle cm^2.
+
+Men det kan skrives om til:
+
+(sorte pixels * areal af en pixel)/(alle pixels * areal en af pixel) = sorte pixels/alle pixels.
+Så du kan bare regne det ud ved at skrive sum(thres.im < 1) / (547*325) hvor de 547*325 bare er det samlede antal pixels i dit billede.  <= argumentet for hvorfor man kan være fuldkommen ligeglad med cm^2.
+
+Den første er procent sorte pixels
+
+den anden er procent hvide pixels. Det var mest for sanity check. De summer til 1, så vi er glade.
+
+Giver det mening? Ja, men tror jeg skal regne det om til cm
+Hvorfor? Du ender jo med at regne procentsatsen ud for hvor meget der er sort og hvor meget af billedet der er sort alligevel.
+Slutresultatet bliver nøjagtigt det samme.
+
+To sekunder. Se mail
+
+Det vindue han taler om, er det hele billedet, eller er det det vindue du får, når du har lavet laslett transformationen og skåret ting væk?
+Jeg tænker, at det er hele billedet, idet vi estimere p i det thresholdedndjfjd billede
+
+heh. Så kan du godt bare dividere antallet af pixels. Så får du samme p værdi som hvis du havde omregnet det til cm^2 areal..
+Og hvis Markus tvivler, så giv ham det argument jeg skrev ovenfor. areal pr pixel går ud med hinanden over og under brøkstregen, så det giver det samme resultat.
+
+Så det der er resulatet er: \hat{p} = sum(thres.im < 1)/(dim(thres.im)[1]*dim(thres.im)[2])?
+
+
+
+> sum(thres.im<1)/(dim(thres.im)[1]*dim(thres.im)[2])
+[1] 0.36922
+> sum(thres.im)/(dim(thres.im)[1]*dim(thres.im)[2])
+[1] 0.63078
